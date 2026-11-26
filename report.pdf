@@ -1,0 +1,26 @@
+# Water & Sanitation Access in Schools (2000–2025) — Data Report
+
+## Overview
+~2,000 region-year records across 25 columns. Covers 6 region schemes (SDG, Other Regional Groupings, Income, UNICEF Programme, UNICEF Reporting, WHO) plus World, spanning 2000–2025. Water-service metrics are split by **TOTAL / URBAN / RURAL** and by **school level** (pre-primary, primary, secondary) into `basic / limited / none`.
+
+## Data Quality
+- **Strong:** complete year coverage per region; clean separation of region schemes; no marker rows leaked.
+- **Weak:** high sparsity pre-2010 (mostly TOTAL-only); `<1` / `>99` stored as text; school-level breakdowns appear mainly from 2017 onward; overlapping aggregates (e.g. income groups vs SDG regions) double-count population if summed.
+
+## Key Findings
+- **High-income regions** saturated at `>99%` basic water since 2000.
+- **Central & Southern Asia** improved from 57% (2011) to **86% (2025)** basic water; "no service" fell 20% → 4%.
+- **Sub-Saharan Africa** stagnant at **~45–46%** basic water through 2025; ~39% still have no service.
+- **Urban–rural gap** is 11–21 pp in low-income and least-developed settings.
+- **Fragile states** barely moved (50% → 53% basic water, 2011–2025).
+- **Low-income group (2025):** 54% basic, 4% limited, **42% no service** — absence, not unreliability, is the dominant problem.
+- **Pre-primary** is the biggest data desert — several regions report nothing at all.
+
+## Recommendations
+1. Parse `<1` / `>99` into numeric-with-flag columns.
+2. Add an `era` flag (pre-2011 / 2011–2016 / 2017+) to prevent cross-era comparisons.
+3. Use `School age-population` for population-weighted aggregates.
+4. In Power BI: use `region_grouping` as a slicer, default trend charts to `TOTAL__basic`, treat sentinels as display strings.
+
+## Data Citation
+> UNESCO Institute for Statistics (UIS). *Water, sanitation and hygiene (WASH) in schools — global and regional time series, 2000–2025.* Extracted and cleaned from `data1.1.csv` → `data_clean.csv`. UIS, Montreal, 2025.
